@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
     public CharacterController rb;
+    ControllerConnected conC;
     public float gravity;
+    //currentGravity should be hidden in editor. If someone knows how to change that.
+    public float currentGravity;
     float velocity;
     public bool sprint = false;
-    public bool isJumped = false;
+    
+    public int MaxJumpTimes = 2;
+    public int JumpedTimes = 0;
+    bool JumpCost = true;
     public float JumpHight = 5f;
     public float stamina = 100f;
     public Sprintbar sb;
@@ -31,6 +38,8 @@ public class Movement : MonoBehaviour
     void Start() 
     { 
         velocity = normal_velocity;
+        currentGravity = gravity;
+        conC = GameObject.Find("ControllerUse").GetComponent<ControllerConnected>();
     }
 
     public Vector3 G;
@@ -85,7 +94,7 @@ public class Movement : MonoBehaviour
         
         if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
-            if(audioSource.isPlaying == false)
+            if(audioSource.isPlaying == false && JumpedTimes == 0)
             {
                 audioSource.Play();
             }
@@ -93,6 +102,10 @@ public class Movement : MonoBehaviour
             
         }
         else
+        {
+            audioSource.Pause();
+        }
+        if(JumpedTimes > 0)
         {
             audioSource.Pause();
         }
@@ -120,7 +133,7 @@ public class Movement : MonoBehaviour
         }
         if (sprint == true)
         {
-                audioSource.clip.
+                //audioSource.clip.
             if (cooldown2)
             {
                 velocity = 10;
@@ -129,18 +142,25 @@ public class Movement : MonoBehaviour
                 Startcooldown2();
             }
         }
-        if (isJumped == false && Input.GetKeyDown(KeyCode.Space))
+        if (JumpedTimes < MaxJumpTimes && Input.GetButtonDown("Jump"))
         {
             G.y = JumpHight;
-            isJumped=true;
+            
+            JumpedTimes++;
         }
         else
         {
             
-            G.y += gravity * Time.deltaTime;
+            G.y += currentGravity * Time.deltaTime;
         }
         rb.Move(G * Time.deltaTime);
+
     }
+        if (conC.isConnected == false)
+        {
+            isWithController = false;
+        }
+        else { isWithController = true;  }
     }
     public IEnumerator StartCooldown()
     {

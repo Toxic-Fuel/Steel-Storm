@@ -1,40 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
     Vector2 rotation;
     public GameObject cam;
+    ControllerConnected conC;
     public bool usesCont = false;
     public bool LockMode = true;
+    public float mouseSensitivity = 5f;
   
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        conC = GameObject.Find("ControllerUse").GetComponent<ControllerConnected>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (conC.isConnected == false)
+        {
+            usesCont = false;
+        }
+        else { usesCont = true;}
         if (!usesCont && LockMode==true)
         {
-            
-            rotation.x += Input.GetAxis("Mouse X") * 5;
-            rotation.y += Input.GetAxis("Mouse Y") * 5;
-            transform.localRotation = Quaternion.Euler(0, rotation.x, 0);
-            cam.transform.localRotation = Quaternion.Euler(Mathf.Max(-90,Mathf.Min(90,-rotation.y)), 0, 0);
+            float verticalRotation;
+            rotation.x += Input.GetAxis("Mouse X") * mouseSensitivity;
+            rotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity;
+            transform.localRotation = Quaternion.Euler(0f, rotation.x, 0f);
+             verticalRotation = Mathf.Clamp(rotation.y, -90f, 90f);
+            cam.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
            
         }
         else
         {
-            Debug.Log(Input.GetAxis("JoyY"));
-            rotation.x += Input.GetAxis("JoyX") * 5;
-            rotation.y += Input.GetAxis("JoyY") * 5;
+            float verticalRotation;
+            rotation.x += Input.GetAxis("Mouse X") * mouseSensitivity / 8;
+            rotation.y += Input.GetAxis("Mouse Y") * mouseSensitivity / 8;
             transform.localRotation = Quaternion.Euler(0, rotation.x, 0);
-            cam.transform.localRotation = Quaternion.Euler(Mathf.Max(-90, Mathf.Min(90, -rotation.y)), 0, 0);
+            verticalRotation = Mathf.Clamp(rotation.y, -90f, 90f);
+            cam.transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
         }
         
     }
