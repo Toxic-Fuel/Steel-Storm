@@ -28,6 +28,6 @@ public class WeaponHotbar : MonoBehaviour
         }
         
         itemName = items[currentItem];
-        Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
+        
     }
 }

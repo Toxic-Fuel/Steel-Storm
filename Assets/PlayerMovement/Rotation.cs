@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
-    Vector2 rotation;
+    public Vector2 rotation;
     public GameObject cam;
     ControllerConnected conC;
     public bool usesCont = false;
