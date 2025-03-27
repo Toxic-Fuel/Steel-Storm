@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 5580413682846764220}
   - component: {fileID: 3745274567505756756}
   - component: {fileID: 875504766052027913}
+  - component: {fileID: 7287658802729271309}
   m_Layer: 0
   m_Name: BulletPistol
   m_TagString: Untagged
@@ -4979,6 +4980,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsTillDecay: 2
+--- !u!114 &7287658802729271309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913139811757882667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7173212dc1f36d041b4e3e3fa25c24dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  Effects: []
 --- !u!1 &6086242104367603959
 GameObject:
   m_ObjectHideFlags: 0

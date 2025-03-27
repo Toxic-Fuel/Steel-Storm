@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class RangedWeapon : MonoBehaviour
 {
-    int ammo;
+    int loadedAmmo;
+    public int TotalAmmo;
     public int MaxAmmo;
-    public int StartingAmmo;
     public string[] Effects;
+    public float DamagePerBullet;
     public GameObject bullet;
     public Transform bulletExit;
     public float bulletForce;
@@ -22,6 +24,7 @@ public class RangedWeapon : MonoBehaviour
     [SerializeField]
     public AudioClip shootSound;
     public bool continueousSound;
+    public TMP_Text[] textObjs;
 
     public Rotation mouseLook;
     public Transform cam;
@@ -46,7 +49,7 @@ public class RangedWeapon : MonoBehaviour
         {
             bullets.Add(Quaternion.Euler(Vector3.zero));
         }
-
+        UpdateWeaponData();
     }
     private void Update()
     {
@@ -64,24 +67,36 @@ public class RangedWeapon : MonoBehaviour
                 Shoot();
             }
         }
+        if (Input.GetButtonDown("Reload"))
+        {
+            Reload();
+        }
     }
     void Shoot()
     {
-        if (coolDownSW.ElapsedMilliseconds > cooldown * 1000)
+        if(loadedAmmo > 0)
         {
-            PlayShootSound();
-            muzzleFlash.Play();
-            for (int i = 0; i < individualBulletsAtOnce; i++)
+            if (coolDownSW.ElapsedMilliseconds > cooldown * 1000)
             {
-                bullets[i] = Random.rotation;
-                GameObject p = Instantiate(bullet, bulletExit.position, bulletExit.rotation);
-                p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, bullets[i], spreadAngle);
-                p.GetComponent<Rigidbody>().AddForce(p.transform.right * bulletForce);
-                i++;
+                loadedAmmo -= 1;
+                UpdateWeaponData();
+                PlayShootSound();
+                muzzleFlash.Play();
+                for (int i = 0; i < individualBulletsAtOnce; i++)
+                {
+                    bullets[i] = Random.rotation;
+                    GameObject p = Instantiate(bullet, bulletExit.position, bulletExit.rotation);
+                    p.transform.rotation = Quaternion.RotateTowards(p.transform.rotation, bullets[i], spreadAngle);
+                    p.GetComponent<Rigidbody>().AddForce(p.transform.right * bulletForce);
+                    p.GetComponent<Bullet>().Effects = Effects;
+                    p.GetComponent<Bullet>().Damage = DamagePerBullet;
+                    i++;
+                }
+                AddRecoil();
+                coolDownSW.Restart();
             }
-            AddRecoil();
-            coolDownSW.Restart();
         }
+        
     }
     void PlayShootSound()
     {
@@ -134,6 +149,45 @@ public class RangedWeapon : MonoBehaviour
 
         cam.transform.localRotation *= Quaternion.AngleAxis(angleRecoilRight, RightRecoilamountV);
         mouseLook.rotation.x += angleRecoilRight;
+
+    }
+    public void Reload()
+    {
+        if (loadedAmmo > 0)
+        {
+            if(MaxAmmo-loadedAmmo <= TotalAmmo)
+            {
+                TotalAmmo -= (MaxAmmo - loadedAmmo);
+                loadedAmmo = MaxAmmo;
+                
+            }
+            else
+            {
+                loadedAmmo += TotalAmmo;
+                TotalAmmo = 0;
+                
+            }
+        }
+        else
+        {
+            if (MaxAmmo <= TotalAmmo)
+            {
+                loadedAmmo = MaxAmmo;
+                TotalAmmo -= MaxAmmo;
+            }
+            else if (MaxAmmo > TotalAmmo)
+            {
+                loadedAmmo = TotalAmmo;
+                TotalAmmo = 0;
+            }
+        }
+        UpdateWeaponData();
+        
+    }
+    public void UpdateWeaponData()
+    {
+        textObjs[0].text = loadedAmmo.ToString();
+        textObjs[1].text = TotalAmmo.ToString();
 
     }
 
