@@ -8,7 +8,12 @@ public class Bullet : MonoBehaviour
     public string[] Effects;
     private void OnCollisionEnter(Collision collision)
     {
-        collision.gameObject.GetComponent<EntityHealth>().TakeDamage(Damage, Effects);
-        Debug.Log("Hit " + collision.gameObject.name + " with "+ Damage);
+        if(collision.gameObject.GetComponent<EntityHealth>() != null)
+        {
+            collision.gameObject.GetComponent<EntityHealth>().TakeDamage(Damage, Effects);
+            Debug.Log("Hit " + collision.gameObject.name + " with " + Damage);
+            Destroy(gameObject);
+        }
+        
     }
 }

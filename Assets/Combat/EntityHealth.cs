@@ -9,7 +9,7 @@ public class EntityHealth : MonoBehaviour
     public float MaxHealth;
     public float StartingHealth;
     float health;
-    [SerializeField]
+    
     public EffectBuff[] effects;
     public HealthVisualizer healthVisualizer;
     public BasicEnemy enemy;
@@ -26,7 +26,11 @@ public class EntityHealth : MonoBehaviour
         {
             enemy.OnDeath();
         }
-        healthVisualizer.ChangeHealth(health);
+        if(healthVisualizer != null)
+        {
+            healthVisualizer.ChangeHealth(health);
+        }
+        
     }
     public void TakeDamage(float damage, string[] effectNames = null)
     {
@@ -50,7 +54,7 @@ public class EntityHealth : MonoBehaviour
         
         currentDamage *= stackedEffects;
         health-=currentDamage;
-        GameObject popUp = Instantiate(DamagePopUp, UnityEngine.Random.insideUnitSphere * 3f, Quaternion.identity);
+        GameObject popUp = Instantiate(DamagePopUp, transform.position + UnityEngine.Random.insideUnitSphere * 1f, Quaternion.identity);
         popUp.GetComponentInChildren<TMP_Text>().text = "-" + currentDamage;
         enemy.Damaged();
     }
