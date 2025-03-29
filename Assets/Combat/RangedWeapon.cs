@@ -25,6 +25,7 @@ public class RangedWeapon : MonoBehaviour
     public AudioClip shootSound;
     public bool continueousSound;
     public TMP_Text[] textObjs;
+    public Animator animator;
 
     public Rotation mouseLook;
     public Transform cam;
@@ -58,6 +59,12 @@ public class RangedWeapon : MonoBehaviour
             if (Input.GetButton("Fire1"))
             {
                 Shoot();
+                animator.SetBool("Shooting", true);
+            }
+            else
+            {
+                gunSoundSource.Stop();
+                animator.SetBool("Shooting", false);
             }
         }
         else
@@ -65,12 +72,43 @@ public class RangedWeapon : MonoBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 Shoot();
+                animator.SetBool("Shooting", true);
+            }
+            if (Input.GetButtonUp("Fire1"))
+            {
+                animator.SetBool("Shooting", false);
             }
         }
         if (Input.GetButtonDown("Reload"))
         {
             Reload();
         }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            animator.SetBool("Scope", true);
+        }
+        if (Input.GetButtonUp("Fire2"))
+        {
+            animator.SetBool("Scope", false);
+        }
+        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            animator.SetBool("Moving", true);
+            if (Input.GetButton("Sprint"))
+            {
+                animator.SetBool("Sprinting", true);
+            }
+            else
+            {
+                animator.SetBool("Sprinting", false);
+                
+            }
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
+        }
+        
     }
     void Shoot()
     {
@@ -95,6 +133,10 @@ public class RangedWeapon : MonoBehaviour
                 AddRecoil();
                 coolDownSW.Restart();
             }
+        }
+        else
+        {
+            gunSoundSource.Stop();
         }
         
     }

@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 71532775254934765}
-  weaponHotbar: {fileID: 5615371546697542619}
+  weaponHotbar: {fileID: 0}
   maxAnims: 2
   lightsaberIgnition: {fileID: 8300000, guid: 67cf9dc6cb132464daa1a10b0f57704c, type: 3}
   lightsaberOff: {fileID: 8300000, guid: ee5d0d6a0611512459b01570fdf052c5, type: 3}
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 878277083713052473}
   - component: {fileID: 7327799401501235261}
   - component: {fileID: 4130249504754545870}
-  - component: {fileID: 5615371546697542619}
+  - component: {fileID: 3840482839658089605}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -612,6 +612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed91d1a01a08e794782767cb5858d29e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotation: {x: 0, y: 0}
   cam: {fileID: 2817670405110478503}
   usesCont: 0
   LockMode: 1
@@ -712,7 +713,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5615371546697542619
+--- !u!114 &3840482839658089605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -725,9 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 
-  items:
-  - lightsaber
-  - pistol
+  items: []
 --- !u!1001 &4737564872481276937
 PrefabInstance:
   m_ObjectHideFlags: 0

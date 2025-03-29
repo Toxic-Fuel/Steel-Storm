@@ -5,8 +5,7 @@ using UnityEngine;
 public class WeaponHotbar : MonoBehaviour
 {
     int currentItem = 0;
-    public string itemName;
-    public string[] items;
+    public GameObject[] weapons;
     
     
     // Start is called before the first frame update
@@ -20,14 +19,37 @@ public class WeaponHotbar : MonoBehaviour
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            currentItem++;
+            if(currentItem < weapons.Length-1)
+            {
+                currentItem++;
+            }
+            else
+            {
+                currentItem = 0;
+            }
+            
         }
         else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            currentItem--;
+            if (currentItem > 0)
+            {
+                currentItem--;
+            }
+            else
+            {
+                currentItem = weapons.Length-1;
+            }
         }
         
-        itemName = items[currentItem];
+       
         
+    }
+    void WeaponUodater()
+    {
+        foreach (GameObject weapon in weapons)
+        {
+            weapon.SetActive(false);
+        }
+        weapons[currentItem].SetActive(true);
     }
 }

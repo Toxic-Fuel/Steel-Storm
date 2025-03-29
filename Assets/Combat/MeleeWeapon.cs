@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeWeapon : MonoBehaviour
 {
     public Animator animator;
-    public WeaponHotbar weaponHotbar;
+    
     public int maxAnims = 2;
     int curAnim = 0;
     bool isOn;
@@ -24,7 +24,7 @@ public class MeleeWeapon : MonoBehaviour
     void Update()
     {
         prevState = isOn;
-        isOn = weaponHotbar.itemName == "lightsaber";
+        
         if(isOn !=prevState)
         {
             if (isOn)
