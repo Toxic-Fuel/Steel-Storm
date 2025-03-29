@@ -136,7 +136,6 @@ public class Movement : MonoBehaviour
                 //audioSource.clip.
             if (cooldown2)
             {
-                velocity = 10;
                 stamina -= 0.2f;
                 sb.Bar();
                 Startcooldown2();
