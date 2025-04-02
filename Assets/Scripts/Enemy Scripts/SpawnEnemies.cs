@@ -4,9 +4,7 @@ using UnityEngine;
 public class SpawnEnemies : MonoBehaviour
 {
     public GameObject enemyPrefab;
-
-    [SerializeField]
-    private float spawnRange = 5f;
+    public BoxCollider spawnArea;
 
     [SerializeField]
     private int numberOfEnemiesToSpawn = 5;
@@ -20,13 +18,20 @@ public class SpawnEnemies : MonoBehaviour
     {
         for (int i = 0; i < numberOfEnemiesToSpawn; i++)
         {
-            Vector3 spawnPosition = new Vector3(
-                Random.Range(-spawnRange, spawnRange),
-                0,
-                Random.Range(-spawnRange, spawnRange)
-            );
-
+            Vector3 spawnPosition = GetRandomPositionWithinHitbox();
             Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
         }
+    }
+
+    private Vector3 GetRandomPositionWithinHitbox()
+    {
+        Vector3 center = spawnArea.bounds.center;
+        Vector3 size = spawnArea.bounds.extents;
+
+        float randomX = Random.Range(center.x - size.x, center.x + size.x);
+        float randomY = center.y;
+        float randomZ = Random.Range(center.z - size.z, center.z + size.z);
+
+        return new Vector3(randomX, randomY, randomZ);
     }
 }
