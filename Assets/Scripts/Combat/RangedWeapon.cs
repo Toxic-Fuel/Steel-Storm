@@ -26,6 +26,7 @@ public class RangedWeapon : MonoBehaviour
     public bool continueousSound;
     public TMP_Text[] textObjs;
     public Animator animator;
+    public float timeToReload;
 
     public Rotation mouseLook;
     public Transform cam;
@@ -42,6 +43,7 @@ public class RangedWeapon : MonoBehaviour
     List<Quaternion> bullets;
 
     private Stopwatch coolDownSW = new Stopwatch();
+    bool stopShooting = false;
     private void Start()
     {
         coolDownSW.Start();
@@ -81,7 +83,8 @@ public class RangedWeapon : MonoBehaviour
         }
         if (Input.GetButtonDown("Reload"))
         {
-            Reload();
+            StopCoroutine(Reload());
+            StartCoroutine(Reload());
         }
         if (Input.GetButtonDown("Fire2"))
         {
@@ -112,7 +115,7 @@ public class RangedWeapon : MonoBehaviour
     }
     void Shoot()
     {
-        if(loadedAmmo > 0)
+        if(loadedAmmo > 0 && stopShooting==false)
         {
             if (coolDownSW.ElapsedMilliseconds > cooldown * 1000)
             {
@@ -193,43 +196,58 @@ public class RangedWeapon : MonoBehaviour
         mouseLook.rotation.x += angleRecoilRight;
 
     }
-    public void Reload()
+    public IEnumerator Reload()
     {
-        if (loadedAmmo > 0)
+        if(TotalAmmo > 0)
         {
-            if(MaxAmmo-loadedAmmo <= TotalAmmo)
+            stopShooting = true;
+            animator.SetTrigger("Reload");
+            yield return new WaitForSeconds(timeToReload);
+            if (loadedAmmo > 0)
             {
-                TotalAmmo -= (MaxAmmo - loadedAmmo);
-                loadedAmmo = MaxAmmo;
-                
+                if (MaxAmmo - loadedAmmo <= TotalAmmo)
+                {
+                    TotalAmmo -= (MaxAmmo - loadedAmmo);
+                    loadedAmmo = MaxAmmo;
+
+                }
+                else
+                {
+                    loadedAmmo += TotalAmmo;
+                    TotalAmmo = 0;
+
+                }
             }
             else
             {
-                loadedAmmo += TotalAmmo;
-                TotalAmmo = 0;
-                
+                if (MaxAmmo <= TotalAmmo)
+                {
+                    loadedAmmo = MaxAmmo;
+                    TotalAmmo -= MaxAmmo;
+                }
+                else if (MaxAmmo > TotalAmmo)
+                {
+                    loadedAmmo = TotalAmmo;
+                    TotalAmmo = 0;
+                }
             }
+            UpdateWeaponData();
+            animator.ResetTrigger("Reload");
+            stopShooting = false;
+            yield break;
         }
-        else
-        {
-            if (MaxAmmo <= TotalAmmo)
-            {
-                loadedAmmo = MaxAmmo;
-                TotalAmmo -= MaxAmmo;
-            }
-            else if (MaxAmmo > TotalAmmo)
-            {
-                loadedAmmo = TotalAmmo;
-                TotalAmmo = 0;
-            }
-        }
-        UpdateWeaponData();
+        
         
     }
     public void UpdateWeaponData()
     {
         textObjs[0].text = loadedAmmo.ToString();
         textObjs[1].text = TotalAmmo.ToString();
+        if (textObjs.Length > 2)
+        {
+            textObjs[2].text = loadedAmmo.ToString();
+        }
+
 
     }
 
