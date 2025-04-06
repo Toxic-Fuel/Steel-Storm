@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     //currentGravity should be hidden in editor. If someone knows how to change that.
     public float currentGravity;
     float velocity;
-    public bool sprint = false;
+    public bool sprint = true;
     
     public int MaxJumpTimes = 2;
     public int JumpedTimes = 0;

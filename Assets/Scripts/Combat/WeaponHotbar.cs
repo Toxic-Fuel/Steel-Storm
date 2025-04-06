@@ -27,7 +27,8 @@ public class WeaponHotbar : MonoBehaviour
             {
                 currentItem = 0;
             }
-            
+            WeaponUpdater();
+
         }
         else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
@@ -39,12 +40,13 @@ public class WeaponHotbar : MonoBehaviour
             {
                 currentItem = weapons.Length-1;
             }
+            WeaponUpdater();
         }
-        
+       
        
         
     }
-    void WeaponUodater()
+    void WeaponUpdater()
     {
         foreach (GameObject weapon in weapons)
         {
