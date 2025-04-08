@@ -4,7 +4,7 @@ UserSettings/Layouts
 .vsconfig/
 Temp/
 Logs/
-UseSettings/
+UserSettings/
 Library/
 *.csproj
 *.sln
