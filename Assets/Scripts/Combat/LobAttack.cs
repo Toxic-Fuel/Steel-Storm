@@ -10,6 +10,8 @@ public class LobAttack : MonoBehaviour
     public GameObject turret;
     public float speed = 15f;
     public float rotationSpeed = 3f;
+    public bool LowAngle = false;
+    public bool rotate = false;
     Vector3 eulerToBecome;
     // Start is called before the first frame update
     void Start()
@@ -23,13 +25,19 @@ public class LobAttack : MonoBehaviour
         Vector3 direction = (enemy.transform.position - this.transform.position).normalized;
         Quaternion LookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0 , direction.z));
         this.transform.rotation =  Quaternion.Slerp(this.transform.rotation, LookRotation, Time.deltaTime*rotationSpeed);
-        RotateTurret();
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(rotate)
         {
-            CreateBullet();
+            RotateTurret();
         }
+            
+        
+        
+            
+        
+        
+       
     }
-    void CreateBullet()
+    public void CreateBullet()
     {
         GameObject shell = Instantiate(bullet, turret.transform.GetChild(0).position, turret.transform.GetChild(0).rotation);
         shell.GetComponent<Rigidbody>().velocity = speed * turret.transform.GetChild(0).forward;
@@ -37,7 +45,7 @@ public class LobAttack : MonoBehaviour
     }
     private void RotateTurret()
     {
-        float? angle = CalculateAngle(false);
+        float? angle = CalculateAngle(LowAngle);
         if(angle != null)
         {
             turret.transform.localEulerAngles = new Vector3(360f - (float)angle, 0f, 0f);
