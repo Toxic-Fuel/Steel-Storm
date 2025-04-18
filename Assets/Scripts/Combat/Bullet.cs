@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
    
     private void OnCollisionEnter(Collision collision)
     {
-        
+        Debug.Log("Hit " + collision.gameObject.name);
         if (particles != null)
         {
             Instantiate(particles, transform.position, transform.rotation);
@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
         {
 
             collision.gameObject.GetComponent<EntityHealth>().TakeDamage(Damage, Effects);
-            Debug.Log("Hit " + collision.gameObject.name + " with " + Damage);
+            
 
             if (Delay == 0)
             {

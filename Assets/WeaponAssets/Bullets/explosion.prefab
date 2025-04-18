@@ -4979,7 +4979,7 @@ MonoBehaviour:
   Effects:
   - fire
   particles: {fileID: 0}
-  Delay: 0
+  Delay: 5
   explosive: 0
   isParticle: 1
 --- !u!114 &1601908743503537901

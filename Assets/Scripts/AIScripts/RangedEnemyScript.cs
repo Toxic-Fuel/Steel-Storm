@@ -31,7 +31,7 @@ public class RangedEnemyScript : MonoBehaviour
         
     }
 
-    void ChooseAction()
+    public void ChooseAction()
     {
         if (seesPlayer)
         {

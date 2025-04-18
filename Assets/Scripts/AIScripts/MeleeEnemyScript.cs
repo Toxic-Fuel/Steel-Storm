@@ -26,7 +26,7 @@ public class MeleeEnemyScript : MonoBehaviour
         
     }
 
-    void ChooseAction()
+    public void ChooseAction()
     {
         if (seesPlayer)
         {

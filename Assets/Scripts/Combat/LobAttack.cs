@@ -11,22 +11,24 @@ public class LobAttack : MonoBehaviour
     public float speed = 15f;
     public float rotationSpeed = 3f;
     public bool LowAngle = false;
-    public bool rotate = false;
+    public bool rotate = true;
     Vector3 eulerToBecome;
+    RangedEnemyScript rangedScript;
     // Start is called before the first frame update
     void Start()
     {
-
+        rangedScript = gameObject.GetComponentInParent<RangedEnemyScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 direction = (enemy.transform.position - this.transform.position).normalized;
-        Quaternion LookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0 , direction.z));
-        this.transform.rotation =  Quaternion.Slerp(this.transform.rotation, LookRotation, Time.deltaTime*rotationSpeed);
-        if(rotate)
+        Quaternion LookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        if (rotate && rangedScript.seesPlayer==true)
         {
+            
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, LookRotation, Time.deltaTime * rotationSpeed);
             RotateTurret();
         }
             
