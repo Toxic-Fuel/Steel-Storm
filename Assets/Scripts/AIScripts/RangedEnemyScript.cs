@@ -74,10 +74,12 @@ public class RangedEnemyScript : MonoBehaviour
 
         Debug.Log("NavAI " + name + " is shooting player");
         agent.SetDestination(player.transform.position);
+        animator.SetBool("run", true);
         while (Vector3.Distance(agent.transform.position, player.transform.position) > range)
         {
             yield return null;
         }
+        animator.SetBool("run", false);
         agent.isStopped = true;
         if (animator != null)
         {

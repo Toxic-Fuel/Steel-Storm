@@ -9,11 +9,12 @@ public class BrassheadEnemy : MonoBehaviour
     public Animator animator;
     public GameObject player;
     NavMeshAgent agent;
-    float idleTime = 3f, AttackRange = 2f, slamTime = 1.5f, range = 10f, steamTime = 4f;
+    float idleTime = 1.5f, AttackRange = 2f, slamTime = 1.5f, range = 10f, steamTime = 4f;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        ChooseAction();
+        animator.SetBool("idle", false);
+        Invoke("StartSeeing", 10f);
     }
     void ChooseAction()
     {
@@ -30,6 +31,7 @@ public class BrassheadEnemy : MonoBehaviour
     }
     IEnumerator Slam()
     {
+        agent.isStopped = false;
         animator.SetBool("idle", false);
         animator.SetBool("run", true);
         agent.SetDestination(player.transform.position);
@@ -50,6 +52,7 @@ public class BrassheadEnemy : MonoBehaviour
     }
     IEnumerator Steam()
     {
+        agent.isStopped = false;
         animator.SetBool("idle", false);
         animator.SetBool("run", true);
         agent.SetDestination(player.transform.position);
@@ -69,5 +72,9 @@ public class BrassheadEnemy : MonoBehaviour
         yield return new WaitForSeconds(idleTime);
         ChooseAction();
         yield break;
+    }
+    void StartSeeing()
+    {
+        ChooseAction();
     }
 }

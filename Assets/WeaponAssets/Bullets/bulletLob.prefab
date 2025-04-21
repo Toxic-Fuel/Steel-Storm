@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1576441066161902909}
   - component: {fileID: 9156106866010291683}
   - component: {fileID: 7663121787514737185}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3745274567505756756}
   - component: {fileID: 875504766052027913}
   - component: {fileID: 7287658802729271309}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: bulletLob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5007,7 +5007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9167859512115011216}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
