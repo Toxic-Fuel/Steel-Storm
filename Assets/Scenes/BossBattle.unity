@@ -198,6 +198,10 @@ PrefabInstance:
       propertyPath: m_Acceleration
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 5735327772684571531, guid: 33463ad63c06a244ca009b0158923af3, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6196565960025360727, guid: 33463ad63c06a244ca009b0158923af3, type: 3}
       propertyPath: m_IsKinematic
       value: 1
