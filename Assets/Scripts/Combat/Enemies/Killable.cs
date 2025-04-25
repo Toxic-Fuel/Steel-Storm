@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Killable : BasicEnemy
 {
+    public GameObject ragdoll;
     public override void Damaged()
     {
         
@@ -11,6 +12,7 @@ public class Killable : BasicEnemy
 
     public override void OnDeath()
     {
+        Instantiate(ragdoll, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

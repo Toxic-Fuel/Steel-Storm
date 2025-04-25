@@ -57,5 +57,6 @@ public class EntityHealth : MonoBehaviour
         GameObject popUp = Instantiate(DamagePopUp, transform.position + UnityEngine.Random.insideUnitSphere * 1f, Quaternion.identity);
         popUp.GetComponentInChildren<TMP_Text>().text = "-" + currentDamage;
         enemy.Damaged();
+        CheckHealth();
     }
 }
