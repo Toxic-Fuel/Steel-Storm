@@ -11,11 +11,11 @@ public class HealthVisualizer : MonoBehaviour
 
     public void ChangeHealth(float health)
     {
-        if(HealthText != null)
+        if (HealthText != null)
         {
             HealthText.text = health.ToString();
         }
-        if(HealthSlider != null)
+        if (HealthSlider != null)
         {
             HealthSlider.value = health;
         }

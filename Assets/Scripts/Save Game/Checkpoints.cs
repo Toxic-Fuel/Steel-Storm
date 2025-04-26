@@ -15,7 +15,6 @@ public class Checkpoints : MonoBehaviour
 {
     public static Checkpoints Instance;
     public Transform[] checkpointPositions;
-    
 
     private string savePath;
 
@@ -27,19 +26,18 @@ public class Checkpoints : MonoBehaviour
             Destroy(gameObject);
 
         savePath = Path.Combine(Application.persistentDataPath, "checkpoint.json");
-    }
-
-    void Start()
-    {
         LoadCheckpoint();
     }
 
     public void SaveCheckpoint(int id)
     {
-        CheckpointData data = new CheckpointData { CheckpointLevel = SceneManager.GetActiveScene().name, checkpointId = id };
+        CheckpointData data = new CheckpointData
+        {
+            CheckpointLevel = SceneManager.GetActiveScene().name,
+            checkpointId = id,
+        };
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(savePath, json);
-        
     }
 
     public void LoadCheckpoint()
@@ -52,10 +50,18 @@ public class Checkpoints : MonoBehaviour
 
         if (data.checkpointId >= 0 && data.checkpointId < checkpointPositions.Length)
         {
+            Debug.Log(data.checkpointId);
             Transform player = GameObject.FindGameObjectWithTag("Player").transform;
             player.position = checkpointPositions[data.checkpointId].position;
         }
-        
     }
-   
+
+    private void OnApplicationQuit()
+    {
+        if (File.Exists(savePath))
+        {
+            File.Delete(savePath);
+            Debug.Log("Checkpoint file deleted");
+        }
+    }
 }
