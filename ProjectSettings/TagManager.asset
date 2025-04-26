@@ -18,8 +18,8 @@ TagManager:
   - Ground
   - Turret
   - Bullet
-  - 
-  - 
+  - Player
+  - PlayerBullet
   - 
   - 
   - 

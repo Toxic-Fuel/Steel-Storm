@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
    
     private void OnCollisionEnter(Collision collision)
     {
+        
         Debug.Log("Hit " + collision.gameObject.name);
         if (particles != null)
         {
@@ -24,7 +25,7 @@ public class Bullet : MonoBehaviour
         }
         if (collision.gameObject.GetComponent<EntityHealth>() != null)
         {
-
+            
             collision.gameObject.GetComponent<EntityHealth>().TakeDamage(Damage, Effects);
             
 

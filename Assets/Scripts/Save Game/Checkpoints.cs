@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class CheckpointData
 {
+    public string CheckpointLevel;
     public int checkpointId;
 }
 
@@ -13,6 +15,7 @@ public class Checkpoints : MonoBehaviour
 {
     public static Checkpoints Instance;
     public Transform[] checkpointPositions;
+    
 
     private string savePath;
 
@@ -33,9 +36,10 @@ public class Checkpoints : MonoBehaviour
 
     public void SaveCheckpoint(int id)
     {
-        CheckpointData data = new CheckpointData { checkpointId = id };
+        CheckpointData data = new CheckpointData { CheckpointLevel = SceneManager.GetActiveScene().name, checkpointId = id };
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(savePath, json);
+        
     }
 
     public void LoadCheckpoint()
@@ -51,5 +55,7 @@ public class Checkpoints : MonoBehaviour
             Transform player = GameObject.FindGameObjectWithTag("Player").transform;
             player.position = checkpointPositions[data.checkpointId].position;
         }
+        
     }
+   
 }

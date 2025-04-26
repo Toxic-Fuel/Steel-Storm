@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
         velocity = normal_velocity;
         currentGravity = gravity;
         conC = GameObject.Find("ControllerUse").GetComponent<ControllerConnected>();
+        sb.Bar();
     }
 
     public Vector3 G;

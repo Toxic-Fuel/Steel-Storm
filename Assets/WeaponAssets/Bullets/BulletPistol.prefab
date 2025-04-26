@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1576441066161902909}
   - component: {fileID: 9156106866010291683}
   - component: {fileID: 7663121787514737185}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 3745274567505756756}
   - component: {fileID: 875504766052027913}
   - component: {fileID: 7287658802729271309}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BulletPistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4994,6 +4994,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   Effects: []
+  particles: {fileID: 0}
+  Delay: 0
+  explosive: 0
+  isParticle: 0
 --- !u!1 &6086242104367603959
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,7 +5009,7 @@ GameObject:
   - component: {fileID: 4536684297121610372}
   - component: {fileID: 1582603821243600731}
   - component: {fileID: 5463720709517756525}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5086,7 +5090,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9167859512115011216}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

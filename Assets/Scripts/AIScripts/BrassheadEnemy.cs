@@ -34,13 +34,15 @@ public class BrassheadEnemy : MonoBehaviour
         agent.isStopped = false;
         animator.SetBool("idle", false);
         animator.SetBool("run", true);
-        agent.SetDestination(player.transform.position);
-        Vector3 lastKnownPos = player.transform.position;
-        while (Vector3.Distance(agent.transform.position, lastKnownPos) > AttackRange + agent.stoppingDistance)
+        do
         {
-            
-            yield return null;
-        }
+            Vector3 PlayerPos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z);
+            agent.SetDestination(PlayerPos);
+            while (Vector3.Distance(agent.transform.position, PlayerPos) > AttackRange + agent.stoppingDistance)
+            {
+                yield return null;
+            }
+        } while (Vector3.Distance(agent.transform.position, player.transform.position) > AttackRange + agent.stoppingDistance);
         animator.SetBool("run", false);
         animator.SetTrigger("slam");
         yield return new WaitForSeconds(slamTime);
