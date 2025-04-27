@@ -71,5 +71,8 @@ public class MainMenu : MonoBehaviour
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(savePath, json);
     }
-    //public void 
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
 }
