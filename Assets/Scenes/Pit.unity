@@ -15303,37 +15303,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1711848538168093467, guid: 889646de4fe46ac44bfa4213bcf337bf, type: 3}
   m_PrefabInstance: {fileID: 1950358119}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1952121717
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1952121718}
-  m_Layer: 9
-  m_Name: musiclistener
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1952121718
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952121717}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7089602319438278321}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1953962943
 GameObject:
   m_ObjectHideFlags: 0
@@ -15753,7 +15722,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1966571327}
   - component: {fileID: 1966571326}
-  - component: {fileID: 1966571325}
+  - component: {fileID: 1966571328}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -15761,21 +15730,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1966571325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966571324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b57c16016ad13ab419c4fb36647b3d75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 3886491741901120831, guid: 8769bd8a9b949b146b985710030fa9f5, type: 3}
-  spawnArea: {fileID: 1966571326}
-  numberOfEnemiesToSpawn: 15
 --- !u!65 &1966571326
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15812,6 +15766,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1966571328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966571324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd90afad26be544db46415699bf6c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 3886491741901120831, guid: 8769bd8a9b949b146b985710030fa9f5, type: 3}
+  spawnArea: {fileID: 1966571326}
+  numberOfEnemiesToSpawn: 15
 --- !u!1 &1967652751
 GameObject:
   m_ObjectHideFlags: 0
@@ -17946,10 +17915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5031684510366156289, guid: e664fc85466d89c4287a4afbb3343683, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1952121718}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5366286552359016764, guid: e664fc85466d89c4287a4afbb3343683, type: 3}
       insertIndex: -1
@@ -17958,11 +17924,6 @@ PrefabInstance:
 --- !u!1 &7089602319438278309 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9072190423875870921, guid: e664fc85466d89c4287a4afbb3343683, type: 3}
-  m_PrefabInstance: {fileID: 7089602319438278306}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7089602319438278321 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5031684510366156289, guid: e664fc85466d89c4287a4afbb3343683, type: 3}
   m_PrefabInstance: {fileID: 7089602319438278306}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7641985626593378535

@@ -38194,8 +38194,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1864715542}
-  - component: {fileID: 1864715544}
   - component: {fileID: 1864715543}
+  - component: {fileID: 1864715545}
   m_Layer: 6
   m_Name: SpawnMelees
   m_TagString: Untagged
@@ -38239,7 +38239,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 15, y: 5, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1864715544
+--- !u!114 &1864715545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38248,7 +38248,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1864715541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b57c16016ad13ab419c4fb36647b3d75, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dd90afad26be544db46415699bf6c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 3886491741901120831, guid: 8769bd8a9b949b146b985710030fa9f5, type: 3}
